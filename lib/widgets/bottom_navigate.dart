@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class BottomNavigate extends StatefulWidget {
   const BottomNavigate({super.key});
@@ -11,18 +12,21 @@ class _BottomNavigateState extends State<BottomNavigate> {
   final _navigates = [
     Navigate(
       title: '首页',
+      route: '/',
       icon: "assets/images/h1.png",
       selectedIcon: "assets/images/h1_selected.png",
       isSelected: true,
     ),
     Navigate(
       title: '消息',
+      route: '/message',
       icon: "assets/images/m1.png",
       selectedIcon: "assets/images/m1_selected.png",
       isSelected: false,
     ),
     Navigate(
       title: '我的',
+      route: '/me',
       icon: "assets/images/m2.png",
       selectedIcon: "assets/images/m2_seleted.png",
       isSelected: false,
@@ -36,12 +40,16 @@ class _BottomNavigateState extends State<BottomNavigate> {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: _navigates.map((e) => _buildNavigetorButton(e)).toList(),
+        children: _navigates
+            .map((e) => _buildNavigetorButton(context, e))
+            .toList(),
       ),
     );
   }
 
-  Widget _buildNavigetorButton(Navigate item) {
+  Widget _buildNavigetorButton(BuildContext context, Navigate item) {
+    final route = GoRouter.of(context).routerDelegate.currentConfiguration.last;
+    final isSelected = route.matchedLocation == item.route;
     return SizedBox(
       height: 49,
       child: GestureDetector(
@@ -51,24 +59,20 @@ class _BottomNavigateState extends State<BottomNavigate> {
               width: 24,
               height: 24,
               image: AssetImage(
-                item.isSelected ? item.selectedIcon : item.icon,
+                isSelected ? item.selectedIcon : item.icon,
               ),
             ),
             Text(
               item.title,
               style: TextStyle(
                 fontSize: 10,
-                color: item.isSelected ? Color(0xFF26C493) : Color(0xFF666666),
+                color: isSelected ? Color(0xFF26C493) : Color(0xFF666666),
               ),
             ),
           ],
         ),
         onTap: () {
-          setState(() {
-            for (var e in _navigates) {
-              e.isSelected = e == item;
-            }
-          });
+          context.go(item.route);
         },
       ),
     );
@@ -80,9 +84,11 @@ class Navigate {
   String icon;
   String selectedIcon;
   bool isSelected;
+  String route;
 
   Navigate({
     required this.title,
+    required this.route,
     required this.icon,
     required this.selectedIcon,
     required this.isSelected,
