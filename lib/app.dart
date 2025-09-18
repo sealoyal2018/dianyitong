@@ -1,5 +1,6 @@
 
 import 'package:dianyitong/views/home_view.dart';
+import 'package:dianyitong/views/message_view.dart';
 import 'package:flutter/material.dart';
 
 class App extends StatelessWidget {
@@ -13,7 +14,7 @@ class App extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Color(0xFF30CC9C)),
       ),
-      home: const HomeView(),
+      home: const MessageView(),
     );
   }
 }
