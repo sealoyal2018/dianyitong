@@ -1,16 +1,16 @@
-# dianyitong
 
-A new Flutter project.
+## Flutter 练习项目
 
-## Getting Started
+项目名称 --- 智慧医院医疗小程序设计
 
-This project is a starting point for a Flutter application.
+> 纯静态数据
 
-A few resources to get you started if this is your first Flutter project:
+## 项目预览
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+[preview](./imgs/2DE3DAE91D292B5EC935089252C7C44E.gif)
+
+UI 参考 -> https://js.design/f/Juv6Ne?p=IKnxcq3HOR&mode=design
+
+
+
