@@ -8,7 +8,7 @@
 ## 项目预览
 
 
-[preview](./imgs/2DE3DAE91D292B5EC935089252C7C44E.gif)
+![preview](./imgs/2DE3DAE91D292B5EC935089252C7C44E.gif)
 
 UI 参考 -> https://js.design/f/Juv6Ne?p=IKnxcq3HOR&mode=design
 
