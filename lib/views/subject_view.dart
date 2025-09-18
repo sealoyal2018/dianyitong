@@ -1,5 +1,5 @@
-
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class SubjectView extends StatefulWidget {
   const SubjectView({super.key});
@@ -46,7 +46,15 @@ class _SubjectViewState extends State<SubjectView> {
       child: Scaffold(
         appBar: AppBar(
           backgroundColor: Color(0xFFFFFFFF),
-          leading: IconButton(onPressed: () {}, icon: Icon(Icons.arrow_left)),
+          leading: IconButton(
+            onPressed: () {
+              final goRouter = GoRouter.of(context);
+              if (goRouter.canPop()) {
+                goRouter.pop();
+              }
+            },
+            icon: Icon(Icons.arrow_left),
+          ),
           title: Expanded(child: Text('科室列表')),
           centerTitle: true,
         ),
@@ -177,7 +185,9 @@ class _SubjectViewState extends State<SubjectView> {
                 final item = items[idx];
                 return Container(
                   decoration: BoxDecoration(
-                    border: Border(bottom: BorderSide(color: Color(0xFFE8E8E8)))
+                    border: Border(
+                      bottom: BorderSide(color: Color(0xFFE8E8E8)),
+                    ),
                   ),
                   child: ListTile(
                     title: Text(item),

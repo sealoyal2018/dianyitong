@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:go_router/go_router.dart';
 
 import '../widgets/bottom_navigate.dart';
 
@@ -32,14 +33,14 @@ class Information {
 
 class _HomeViewState extends State<HomeView> {
   final _navs = [
-    NavInfo(title: '当日挂号', icon: 'assets/images/1.png', route: ''),
-    NavInfo(title: '预约挂号', icon: 'assets/images/2.png', route: ''),
-    NavInfo(title: '在线咨询', icon: 'assets/images/3.png', route: ''),
-    NavInfo(title: '门诊缴费', icon: 'assets/images/4.png', route: ''),
-    NavInfo(title: '检查预约', icon: 'assets/images/5.png', route: ''),
-    NavInfo(title: '门诊报告', icon: 'assets/images/6.png', route: ''),
-    NavInfo(title: '电子票据', icon: 'assets/images/7.png', route: ''),
-    NavInfo(title: '院内导航', icon: 'assets/images/8.png', route: ''),
+    NavInfo(title: '当日挂号', icon: 'assets/images/1.png', route: '/'),
+    NavInfo(title: '预约挂号', icon: 'assets/images/2.png', route: '/subject'),
+    NavInfo(title: '在线咨询', icon: 'assets/images/3.png', route: '/'),
+    NavInfo(title: '门诊缴费', icon: 'assets/images/4.png', route: '/'),
+    NavInfo(title: '检查预约', icon: 'assets/images/5.png', route: '/'),
+    NavInfo(title: '门诊报告', icon: 'assets/images/6.png', route: '/'),
+    NavInfo(title: '电子票据', icon: 'assets/images/7.png', route: '/'),
+    NavInfo(title: '院内导航', icon: 'assets/images/8.png', route: '/'),
   ];
 
   final infomations = [
@@ -168,7 +169,9 @@ class _HomeViewState extends State<HomeView> {
                         height: 160,
                         child: GridView.count(
                           crossAxisCount: 4,
-                          children: _navs.map((e) => _buildNavItem(e)).toList(),
+                          children: _navs
+                              .map((e) => _buildNavItem(context, e))
+                              .toList(),
                         ),
                       ),
 
@@ -268,18 +271,23 @@ class _HomeViewState extends State<HomeView> {
     );
   }
 
-  Widget _buildNavItem(NavInfo info) {
-    return SizedBox(
-      height: 64,
-      width: 60,
-      child: Column(
-        children: [
-          CircleAvatar(
-            backgroundColor: Color(0xFFDFF5F1),
-            child: Image(image: AssetImage(info.icon)),
-          ),
-          Text(info.title),
-        ],
+  Widget _buildNavItem(BuildContext context, NavInfo info) {
+    return GestureDetector(
+      onTap: (){
+        context.push(info.route);
+      },
+      child: SizedBox(
+        height: 64,
+        width: 60,
+        child: Column(
+          children: [
+            CircleAvatar(
+              backgroundColor: Color(0xFFDFF5F1),
+              child: Image(image: AssetImage(info.icon)),
+            ),
+            Text(info.title),
+          ],
+        ),
       ),
     );
   }
