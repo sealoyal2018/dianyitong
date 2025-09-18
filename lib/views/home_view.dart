@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
+import '../widgets/bottom_navigate.dart';
+
 class HomeView extends StatefulWidget {
   const HomeView({super.key});
 
@@ -28,20 +30,6 @@ class Information {
   });
 }
 
-class Navigate {
-  String title;
-  String icon;
-  String selectedIcon;
-  bool isSelected;
-
-  Navigate({
-    required this.title,
-    required this.icon,
-    required this.selectedIcon,
-    required this.isSelected,
-  });
-}
-
 class _HomeViewState extends State<HomeView> {
   final _navs = [
     NavInfo(title: '当日挂号', icon: 'assets/images/1.png', route: ''),
@@ -52,27 +40,6 @@ class _HomeViewState extends State<HomeView> {
     NavInfo(title: '门诊报告', icon: 'assets/images/6.png', route: ''),
     NavInfo(title: '电子票据', icon: 'assets/images/7.png', route: ''),
     NavInfo(title: '院内导航', icon: 'assets/images/8.png', route: ''),
-  ];
-
-  final _navigates = [
-    Navigate(
-      title: '首页',
-      icon: "assets/images/h1.png",
-      selectedIcon: "assets/images/h1_selected.png",
-      isSelected: true,
-    ),
-    Navigate(
-      title: '消息',
-      icon: "assets/images/m1.png",
-      selectedIcon: "assets/images/m1_selected.png",
-      isSelected: false,
-    ),
-    Navigate(
-      title: '我的',
-      icon: "assets/images/m2.png",
-      selectedIcon: "assets/images/m2_seleted.png",
-      isSelected: false,
-    ),
   ];
 
   final infomations = [
@@ -295,14 +262,8 @@ class _HomeViewState extends State<HomeView> {
             ],
           ),
         ),
-        bottomNavigationBar: ColoredBox(
-          color: Color(0xFFFFFFFF),
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: _navigates.map((e) => _buildNavigetorButton(e)).toList(),
-          ),
-        ), // This trailing comma makes auto-formatting nicer for build methods.
+        bottomNavigationBar:
+            BottomNavigate(), // This trailing comma makes auto-formatting nicer for build methods.
       ),
     );
   }
@@ -319,39 +280,6 @@ class _HomeViewState extends State<HomeView> {
           ),
           Text(info.title),
         ],
-      ),
-    );
-  }
-
-  Widget _buildNavigetorButton(Navigate item) {
-    return SizedBox(
-      height: 49,
-      child: GestureDetector(
-        child: Column(
-          children: [
-            Image(
-              width: 24,
-              height: 24,
-              image: AssetImage(
-                item.isSelected ? item.selectedIcon : item.icon,
-              ),
-            ),
-            Text(
-              item.title,
-              style: TextStyle(
-                fontSize: 10,
-                color: item.isSelected ? Color(0xFF26C493) : Color(0xFF666666),
-              ),
-            ),
-          ],
-        ),
-        onTap: () {
-          setState(() {
-            for(var e in _navigates){
-              e.isSelected = e == item;
-            }
-          });
-        },
       ),
     );
   }
