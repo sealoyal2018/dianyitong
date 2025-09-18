@@ -1,4 +1,4 @@
-
+import 'package:chinese_font_library/chinese_font_library.dart';
 import 'package:dianyitong/views/home_view.dart';
 import 'package:dianyitong/views/me_view.dart';
 import 'package:dianyitong/views/message_view.dart';
@@ -14,7 +14,7 @@ class App extends StatelessWidget {
       title: 'Flutter Demo',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Color(0xFF30CC9C)),
-      ),
+      ).useSystemChineseFont(Brightness.light),
       home: const MeView(),
     );
   }
