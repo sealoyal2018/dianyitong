@@ -1,8 +1,5 @@
 import 'package:chinese_font_library/chinese_font_library.dart';
 import 'package:dianyitong/route.dart';
-import 'package:dianyitong/views/home_view.dart';
-import 'package:dianyitong/views/me_view.dart';
-import 'package:dianyitong/views/message_view.dart';
 import 'package:flutter/material.dart';
 
 class App extends StatelessWidget {
@@ -15,6 +12,7 @@ class App extends StatelessWidget {
       title: 'Flutter Demo',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Color(0xFF30CC9C)),
+        scaffoldBackgroundColor: Colors.white,
       ).useSystemChineseFont(Brightness.light),
       routerConfig: router,
     );
